@@ -106,4 +106,12 @@ while True:
             f"{round(video_object.streams.get_audio_only().filesize / (1024*1024), 1)} MB"
         )
 
+    # download() by default downloads in current folder
+    if event == "-BEST-":
+        video_object.streams.get_highest_resolution().download()
+    if event == "-WORST-":
+        video_object.streams.get_lowest_resolution().download()
+    if event == "-AUDIO-":
+        video_object.streams.get_audio_only().download()
+
 window.close()
