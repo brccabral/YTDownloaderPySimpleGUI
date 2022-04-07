@@ -1,6 +1,17 @@
 import PySimpleGUI as sg
 
-info_tab_layout = [[]]
+info_tab_layout = [
+    [sg.Text("Title:", key="-TitleLabel-"), sg.Text("", key="-TITLE-")],
+    [sg.Text("Length:", key="-LengthLabel-"), sg.Text("", key="-LENGTH-")],
+    [sg.Text("Views:", key="-ViewsLabel-"), sg.Text("", key="-VIEWS-")],
+    [sg.Text("Author:", key="-AuthorLabel-"), sg.Text("", key="-AUTHOR-")],
+    [
+        sg.Text("Description:", key="-DescriptionLabel-"),
+        sg.Multiline(
+            key="-DESCRIPTION-", no_scrollbar=True, size=(40, 20), disabled=True
+        ),
+    ],
+]
 download_tab_layout = [[]]
 
 layout = [
@@ -8,8 +19,8 @@ layout = [
         sg.TabGroup(
             [
                 [
-                    sg.Tab("Info", info_tab_layout),
-                    sg.Tab("Download", download_tab_layout),
+                    sg.Tab("Info", layout=info_tab_layout),
+                    sg.Tab("Download", layout=download_tab_layout),
                 ]
             ]
         )
