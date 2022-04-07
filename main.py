@@ -1,5 +1,7 @@
 import PySimpleGUI as sg
 
+
+sg.theme("Darkred1")
 info_tab_layout = [
     [sg.Text("Title:", key="-TitleLabel-"), sg.Text("", key="-TITLE-")],
     [sg.Text("Length:", key="-LengthLabel-"), sg.Text("", key="-LENGTH-")],
@@ -46,7 +48,7 @@ download_tab_layout = [
         )
     ],
     [sg.VPush()],
-    [sg.Progress(100, size=(20, 20), expand_x=True, key='-PROGRESS-')],
+    [sg.Progress(100, size=(20, 20), expand_x=True, key="-PROGRESS-")],
 ]
 
 layout = [
