@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+from pytube import YouTube
 
 
 sg.theme("Darkred1")
@@ -78,6 +79,8 @@ while True:
         video_link = values["-INPUT-"]
         window.close()
 
-        window = sg.Window("YT Downloader", layout)
+        video_object = YouTube(video_link)
+        window = sg.Window("YT Downloader", layout, finalize=True)
+        window["-TITLE-"].update(video_object.title)
 
 window.close()
