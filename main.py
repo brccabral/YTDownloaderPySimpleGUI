@@ -2,6 +2,9 @@ import PySimpleGUI as sg
 
 
 sg.theme("Darkred1")
+
+start_layout = [[sg.Input(key="-INPUT-"), sg.Button("Submit", key="-LINK-")]]
+
 info_tab_layout = [
     [sg.Text("Title:", key="-TitleLabel-"), sg.Text("", key="-TITLE-")],
     [sg.Text("Length:", key="-LengthLabel-"), sg.Text("", key="-LENGTH-")],
@@ -64,11 +67,17 @@ layout = [
     ]
 ]
 
-window = sg.Window("YT Downloader", layout)
+window = sg.Window("YT Downloader", start_layout)
 
 while True:
     event, values = window.read()
     if event == sg.WIN_CLOSED:
         break
+
+    if event == "-LINK-":
+        video_link = values["-INPUT-"]
+        window.close()
+
+        window = sg.Window("YT Downloader", layout)
 
 window.close()
