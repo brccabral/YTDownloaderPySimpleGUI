@@ -81,6 +81,12 @@ while True:
 
         video_object = YouTube(video_link)
         window = sg.Window("YT Downloader", layout, finalize=True)
+
+        # video info
         window["-TITLE-"].update(video_object.title)
+        window["-LENGTH-"].update(f"{round(video_object.length /60, 2)} minutes")
+        window["-VIEWS-"].update(video_object.views)
+        window["-AUTHOR-"].update(video_object.author)
+        window["-DESCRIPTION-"].update(video_object.description)
 
 window.close()
