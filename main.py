@@ -1,5 +1,14 @@
 import PySimpleGUI as sg
-from pytube import YouTube
+from pytube import YouTube, Stream
+
+
+def update_on_progress(stream: Stream, chunk, bytes_remaining: int):
+    progress_amount = 100 - round(100 * bytes_remaining / stream.filesize)
+    window["-PROGRESS-"].update(progress_amount)
+
+
+def update_on_complete(stream: Stream, file_path):
+    window["-PROGRESS-"].update(0)
 
 
 sg.theme("Darkred1")
@@ -52,7 +61,15 @@ download_tab_layout = [
         )
     ],
     [sg.VPush()],
-    [sg.Progress(100, size=(20, 20), expand_x=True, key="-PROGRESS-")],
+    [
+        sg.Progress(
+            100,
+            size=(20, 20),
+            expand_x=True,
+            key="-PROGRESS-",
+            bar_color=("#FF5555", "#F8F8F8"),
+        )
+    ],
 ]
 
 layout = [
@@ -79,7 +96,11 @@ while True:
         video_link = values["-INPUT-"]
         window.close()
 
-        video_object = YouTube(video_link)
+        video_object = YouTube(
+            video_link,
+            on_progress_callback=update_on_progress,
+            on_complete_callback=update_on_complete,
+        )
         window = sg.Window("YT Downloader", layout, finalize=True)
 
         # video info
