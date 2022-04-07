@@ -89,4 +89,21 @@ while True:
         window["-AUTHOR-"].update(video_object.author)
         window["-DESCRIPTION-"].update(video_object.description)
 
+        # download
+        window["-BESTSIZE-"].update(
+            f"{round(video_object.streams.get_highest_resolution().filesize / (1024*1024), 1)} MB"
+        )
+        window["-BESTRES-"].update(
+            video_object.streams.get_highest_resolution().resolution
+        )
+        window["-WORSTSIZE-"].update(
+            f"{round(video_object.streams.get_lowest_resolution().filesize / (1024*1024), 1)} MB"
+        )
+        window["-WORSTRES-"].update(
+            video_object.streams.get_lowest_resolution().resolution
+        )
+        window["-AUDIOSIZE-"].update(
+            f"{round(video_object.streams.get_audio_only().filesize / (1024*1024), 1)} MB"
+        )
+
 window.close()
