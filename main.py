@@ -12,7 +12,42 @@ info_tab_layout = [
         ),
     ],
 ]
-download_tab_layout = [[]]
+download_tab_layout = [
+    [
+        sg.Frame(
+            "Best Quality",
+            layout=[
+                [
+                    sg.Button("Download", key="-BEST-"),
+                    sg.Text("", key="-BESTRES-"),
+                    sg.Text("", key="-BESTSIZE-"),
+                ]
+            ],
+        )
+    ],
+    [
+        sg.Frame(
+            "Worst Quality",
+            layout=[
+                [
+                    sg.Button("Download", key="-WORST-"),
+                    sg.Text("", key="-WORSTRES-"),
+                    sg.Text("", key="-WORSTSIZE-"),
+                ]
+            ],
+        )
+    ],
+    [
+        sg.Frame(
+            "Audio",
+            layout=[
+                [sg.Button("Download", key="-AUDIO-"), sg.Text("", key="-AUDIOSIZE-")]
+            ],
+        )
+    ],
+    [sg.VPush()],
+    [sg.Progress(100, size=(20, 20), expand_x=True, key='-PROGRESS-')],
+]
 
 layout = [
     [
